@@ -3,6 +3,7 @@ require 'moonscript'
 
 cnpj = require 'cnpj'
 
+
 describe 'DV', ->
 
     it 'should properly calc first DV', ->
@@ -54,4 +55,25 @@ describe 'Validate CNPJ', ->
         assert.is_false cnpj.validate '98.925/0001-37'
         assert.is_false cnpj.validate '85.2.812/000181'
         assert.is_false cnpj.validate ''
+
+
+describe 'Format CNPJ', ->
+
+    it 'should properly format good CNPJ', ->
+        mycnpj = '98.925.478/0001-27'
+        cnpjdigits = [tonumber(d) for d in mycnpj\gmatch '%d']
+        assert.are.equal mycnpj, cnpj.format cnpjdigits
+
+        mycnpj = '85.732.812/0001-84'
+        cnpjdigits = [tonumber(d) for d in mycnpj\gmatch '%d']
+        assert.are.equal mycnpj, cnpj.format cnpjdigits
+
+    it 'should return empty when cnpj is bad', ->
+        mycnpj = '98.925.478/0001-97'
+        cnpjdigits = [tonumber(d) for d in mycnpj\gmatch '%d']
+        assert.are.equal '', cnpj.format cnpjdigits
+
+        mycnpj = '833.962.4/8'
+        cnpjdigits = [tonumber(d) for d in mycnpj\gmatch '%d']
+        assert.are.equal '', cnpj.format cnpjdigits
 

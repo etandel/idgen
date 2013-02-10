@@ -53,3 +53,25 @@ describe 'Validate CPF', ->
         assert.is_false cpf.validate '881281-2'
         assert.is_false cpf.validate ''
 
+
+describe 'Format CPF', ->
+
+    it 'should properly format good CPF', ->
+        mycpf = '436.567.586-97'
+        cpfdigits = [tonumber(d) for d in mycpf\gmatch '%d']
+        assert.are.equal mycpf, cpf.format cpfdigits
+
+        mycpf = '833.962.075-48'
+        cpfdigits = [tonumber(d) for d in mycpf\gmatch '%d']
+        assert.are.equal mycpf, cpf.format cpfdigits
+
+
+    it 'should return empty when cpf is bad', ->
+        mycpf = '436.567.586-87'
+        cpfdigits = [tonumber(d) for d in mycpf\gmatch '%d']
+        assert.are.equal '', cpf.format cpfdigits
+
+        mycpf = '833.962.48'
+        cpfdigits = [tonumber(d) for d in mycpf\gmatch '%d']
+        assert.are.equal '', cpf.format cpfdigits
+

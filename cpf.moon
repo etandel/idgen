@@ -25,8 +25,20 @@ validate = (cpf) ->
     return ok
 
 
+format = (cpf) ->
+    return if validate cpf
+        string.format '%s.%s.%s-%s',
+            table.concat [d for d in *cpf[1, 3]],
+            table.concat [d for d in *cpf[4, 6]],
+            table.concat [d for d in *cpf[7, 9]],
+            table.concat [d for d in *cpf[10, 11]]
+    else
+        ''
+
+
 return {
     :_calc_dv
     :random
     :validate
+    :format
 }
