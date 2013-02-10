@@ -1,8 +1,8 @@
 #!/usr/bin/bash
 
-moonc tests.moon
-if [ $? ]; then
-    busted --lpath='./?.lua;./?.moon' tests.lua
+
+if moonc tests.moon; then
+    busted -v --lpath='./?.lua;' tests.lua
     rm tests.lua
 fi
 
