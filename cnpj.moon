@@ -15,7 +15,7 @@ _calc_dv = (digits) ->
 
 random = ->
     digits = for i = 1, 12
-        math.random 0, 12
+        math.random 0, 9
     digits[#digits + 1] = _calc_dv digits
     digits[#digits + 1] = _calc_dv digits
     return digits
@@ -30,8 +30,21 @@ validate = (cnpj) ->
     return ok
 
 
+format = (cnpj) ->
+    if validate cnpj
+        string.format '%s.%s.%s/%s-%s',
+            table.concat [d for d in *cnpj[1,2]],
+            table.concat [d for d in *cnpj[3,5]],
+            table.concat [d for d in *cnpj[6,8]],
+            table.concat [d for d in *cnpj[9,12]],
+            table.concat [d for d in *cnpj[13,14]]
+    else
+        ''
+
+
 return {
     :_calc_dv
     :random
     :validate
+    :format
 }
