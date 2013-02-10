@@ -36,3 +36,21 @@ describe 'Random CPF', ->
         first10 = [i for i in *mycpf[1, 10]]
         assert.are.equal cpf._calc_dv(first10), mycpf[#mycpf]
 
+
+describe 'Validate CPF', ->
+
+    it 'should return true with correct cpf', ->
+        assert.is_true cpf.validate '436.567.586-97'
+        assert.is_true cpf.validate '833.962.075-48'
+        assert.is_true cpf.validate '488.512.841-21'
+
+    it 'should return false with bad cpf', ->
+        assert.is_false cpf.validate '436.567.586-17'
+        assert.is_false cpf.validate '833.962.075-49'
+        assert.is_false cpf.validate '488.512.841-01'
+
+    it 'should return false with wrongly sized cpf', ->
+        assert.is_false cpf.validate '436.567.6-97'
+        assert.is_false cpf.validate '881281-2'
+        assert.is_false cpf.validate ''
+
