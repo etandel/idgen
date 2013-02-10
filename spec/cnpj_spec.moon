@@ -19,3 +19,18 @@ describe 'DV', ->
         digits = [d for d in '27.495.595/0001-5'\gmatch '%d']
         assert.are.equal 0, cnpj._calc_dv digits
 
+
+describe 'Random CNPJ', ->
+
+    it 'should generate a 14 digit sequence', ->
+        assert.are.equal 14, #cnpj.random!
+
+    it 'should generate correct DVs', ->
+        mycnpj = cnpj.random!
+
+        first9 = [i for i in *mycnpj[1, 12]]
+        assert.are.equal cnpj._calc_dv(first9), mycnpj[#mycnpj - 1]
+
+        first10 = [i for i in *mycnpj[1, 13]]
+        assert.are.equal cnpj._calc_dv(first10), mycnpj[#mycnpj]
+
