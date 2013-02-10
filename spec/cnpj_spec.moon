@@ -34,3 +34,21 @@ describe 'Random CNPJ', ->
         first10 = [i for i in *mycnpj[1, 13]]
         assert.are.equal cnpj._calc_dv(first10), mycnpj[#mycnpj]
 
+
+describe 'Validate CPF', ->
+
+    it 'should return true with correct cnpj', ->
+        assert.is_true cnpj.validate '98.925.478/0001-27'
+        assert.is_true cnpj.validate '85.732.812/0001-84'
+        assert.is_true cnpj.validate '26.547.540/0001-83'
+
+    it 'should return false with bad cnpj', ->
+        assert.is_false cnpj.validate '98.925.478/0001-37'
+        assert.is_false cnpj.validate '85.732.812/0001-81'
+        assert.is_false cnpj.validate '26.547.540/0001-85'
+
+    it 'should return false with wrongly sized cnpj', ->
+        assert.is_false cnpj.validate '98.925/0001-37'
+        assert.is_false cnpj.validate '85.2.812/000181'
+        assert.is_false cnpj.validate ''
+

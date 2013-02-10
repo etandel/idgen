@@ -21,7 +21,17 @@ random = ->
     return digits
 
 
+validate = (cnpj) ->
+    if type(cnpj) == 'string'
+        cnpj = [tonumber(d) for d in cnpj\gmatch'%d']
+    ok = #cnpj == 14
+    ok = ok and cnpj[#cnpj - 1] == _calc_dv [d for d in *cnpj[1,12]]
+    ok = ok and cnpj[#cnpj] == _calc_dv [d for d in *cnpj[1,13]]
+    return ok
+
+
 return {
     :_calc_dv
     :random
+    :validate
 }
