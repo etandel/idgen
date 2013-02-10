@@ -23,7 +23,10 @@ describe 'DV', ->
 describe 'Random CNPJ', ->
 
     it 'should generate a 14 digit sequence', ->
-        assert.are.equal 14, #cnpj.random!
+        mycnpj = cnpj.random!
+        assert.are.equal 14, #mycnpj
+        for d in *mycnpj
+            assert.are.equal 1, #tostring(d)
 
     it 'should generate correct DVs', ->
         mycnpj = cnpj.random!
@@ -35,7 +38,7 @@ describe 'Random CNPJ', ->
         assert.are.equal cnpj._calc_dv(first10), mycnpj[#mycnpj]
 
 
-describe 'Validate CPF', ->
+describe 'Validate CNPJ', ->
 
     it 'should return true with correct cnpj', ->
         assert.is_true cnpj.validate '98.925.478/0001-27'

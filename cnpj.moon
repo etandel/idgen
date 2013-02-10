@@ -15,7 +15,7 @@ _calc_dv = (digits) ->
 
 random = ->
     digits = for i = 1, 12
-        math.random 0, 12
+        math.random 0, 9
     digits[#digits + 1] = _calc_dv digits
     digits[#digits + 1] = _calc_dv digits
     return digits
