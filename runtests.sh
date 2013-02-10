@@ -1,8 +1,8 @@
 #!/usr/bin/bash
 
 
-if moonc tests; then
-    busted -v --lpath="$(pwd)/?.lua;" tests
-    find ./tests -iname '*.lua' -delete
+if moonc spec; then
+    busted -v --lpath="$(pwd)/?.lua;" spec
+    find ./spec -iname '*.lua' -delete
 fi
 

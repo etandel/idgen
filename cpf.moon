@@ -1,6 +1,3 @@
-math.randomseed os.time!
-
-
 _calc_dv = (digits) ->
     weight = #digits + 1
     dv = 0
