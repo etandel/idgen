@@ -18,8 +18,7 @@ random = ->
 
 validate = (cpf) ->
     if type(cpf) == 'string'
-        cpf = cpf\gsub '[%.%-%s]+', ''
-        cpf = [tonumber(d) for d in cpf\gmatch'.']
+        cpf = [tonumber(d) for d in cpf\gmatch'%d']
     ok = #cpf == 11
     ok = ok and cpf[#cpf - 1] == _calc_dv [d for d in *cpf[1,9]]
     ok = ok and cpf[#cpf] == _calc_dv [d for d in *cpf[1,10]]
