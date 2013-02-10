@@ -15,7 +15,7 @@ cli\add_flag '-d, --digits', "Will not print separators such as '.', '-' etc."
 
 args = cli\parse_args!
 if args
-    idgen = require args['IDTYPE']
+    idgen = require ('gens.%s')\format args['IDTYPE']
     switch args['ACTION']
         when 'validate'
             io.write tostring idgen.validate args['ID']

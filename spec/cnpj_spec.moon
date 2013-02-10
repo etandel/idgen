@@ -1,7 +1,7 @@
 require 'busted'
 require 'moonscript'
 
-cnpj = require 'cnpj'
+cnpj = require 'gens.cnpj'
 
 
 describe 'DV', ->

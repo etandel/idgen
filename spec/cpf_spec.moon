@@ -1,7 +1,7 @@
 require 'busted'
 require 'moonscript'
 
-cpf = require 'cpf'
+cpf = require 'gens.cpf'
 
 
 describe 'DV', ->
